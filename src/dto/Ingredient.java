@@ -1,43 +1,48 @@
-package business.dto;
+package dto;
 
 public class Ingredient {
-    private int id;
+    private Integer id;
     private String ingredientName;
     private String ingredientType;
-    
-    public Ingredient(int id, String ingredientName, String ingredientType) {
+
+    public Ingredient() {
+    }
+
+    public Ingredient(Integer id, String ingredientName, String ingredientType) {
         this.id = id;
         this.ingredientName = ingredientName;
         this.ingredientType = ingredientType;
     }
-    
+
     // Getters and setters
-    public int getId() {
+    public Integer getId() {
         return id;
     }
-    
-    public void setId(int id) {
+
+    public void setId(Integer id) {
         this.id = id;
     }
-    
+
     public String getIngredientName() {
         return ingredientName;
     }
-    
+
     public void setIngredientName(String ingredientName) {
         this.ingredientName = ingredientName;
     }
-    
+
     public String getIngredientType() {
         return ingredientType;
     }
-    
+
     public void setIngredientType(String ingredientType) {
         this.ingredientType = ingredientType;
     }
-    
+
     @Override
     public String toString() {
-        return ingredientName + " (" + ingredientType + ")";
+        return "Ingredient: " + ingredientName +
+                "\nType: " + ingredientType +
+                "\nID: " + id;
     }
-} 
+}
