@@ -1,0 +1,111 @@
+\documentclass{article}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\title{JDBC Lab Analysis and Implementation Report}
+\author{CS Database Course}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+This report analyzes the implementation of a JDBC-based database connectivity lab focusing on the Data Access Layer (DAL) pattern and three-tier architecture. The assignment required creating database connections, implementing various JDBC statements, and structuring code following software engineering best practices.
+
+\section{Implementation Analysis}
+
+\subsection{Data Manager Implementation (Requirement 1)}
+The DataMgr class successfully implements the core requirements:
+\begin{itemize}
+    \item Centralized connection management through singleton pattern
+    \item Connections to multiple databases (MealPlanning, ArcadeGames)
+    \item Proper resource management with connection closing
+    \item Robust error handling and logging
+\end{itemize}
+
+Code quality is high, with proper exception handling and logging using java.util.logging.
+
+\subsection{Three-Layer Architecture (Requirement 2)}
+The codebase successfully implements the three-layer architecture:
+
+\subsubsection{Presentation Layer}
+\begin{itemize}
+    \item IntroToPresentationLayer.java handles user interaction
+    \item Clean separation from business logic
+    \item User input handling for database credentials
+\end{itemize}
+
+\subsubsection{Business Logic Layer}
+Evidence of DTOs (Data Transfer Objects):
+\begin{itemize}
+    \item Recipe class
+    \item Ingredient class
+    \item ArcadeGame, Player, and Score classes
+\end{itemize}
+
+\subsubsection{Data Access Layer}
+Well-structured DAL implementation:
+\begin{itemize}
+    \item DataMgr for connection management
+    \item Separate DAL classes for different databases
+    \item Proper resource cleanup
+\end{itemize}
+
+\subsection{Multiple DAL Implementation (Requirement 3)}
+The ArcadeGamesDAL class demonstrates:
+\begin{itemize}
+    \item Statement usage for basic queries
+    \item PreparedStatement for parameterized queries
+    \item CallableStatement for stored procedures
+    \item Consistent error handling and logging
+\end{itemize}
+
+\section{Technical Implementation Details}
+
+\subsection{JDBC Statement Types}
+The codebase demonstrates all three JDBC statement types:
+
+1. Basic Statement:
+\begin{itemize}
+    \item Used in getAllRecipes() method
+    \item Suitable for static queries
+\end{itemize}
+
+2. PreparedStatement:
+\begin{itemize}
+    \item Used in getIngredientsForRecipe()
+    \item Prevents SQL injection
+    \item Better performance for repeated execution
+\end{itemize}
+
+3. CallableStatement:
+\begin{itemize}
+    \item Implemented in getRecipesFromStoredProcedure()
+    \item Proper parameter handling
+    \item Stored procedure execution
+\end{itemize}
+
+\section{Areas for Improvement}
+\begin{itemize}
+    \item Connection pooling could be implemented for better performance
+    \item Transaction management could be added
+    \item More comprehensive error recovery mechanisms
+    \item Unit tests could be added
+\end{itemize}
+
+\section{Learning Outcomes}
+Through this lab, I gained practical experience with:
+\begin{itemize}
+    \item JDBC database connectivity
+    \item Three-tier architecture implementation
+    \item Different types of SQL statements
+    \item Resource management in database applications
+    \item Error handling and logging
+    \item Software design patterns (Singleton, DAO)
+\end{itemize}
+
+\section{Conclusion}
+The implementation successfully meets all core requirements while demonstrating good software engineering practices. The code is well-structured, maintainable, and follows proper separation of concerns. The experience provided valuable insights into real-world database application development and the importance of proper architectural design.
+
+\end{document}
